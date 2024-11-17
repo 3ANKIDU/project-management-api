@@ -1,0 +1,1341 @@
+{
+	"info": {
+		"_postman_id": "0ccd2e8f-5992-4e19-b71b-aba746e25922",
+		"name": "project managment api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "24172325"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the token value in a variable named 'token'",
+									"pm.environment.set(\"token\", response.token);",
+									"",
+									"// Log the token to confirm it's been captured",
+									"console.log(\"Token: \", response.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Ahmed Mohmaed Hegazy\",\n    \"email\": \"ahmed7egazy.2003@gmail.com\",\n    \"password\": \"00000000\",\n    \"password_confirmation\": \"00000000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/register"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the token value in a variable named 'token'",
+									"pm.environment.set(\"token\", response.token);",
+									"pm.environment.set(\"user\", response.user.id);",
+									"",
+									"// Log the token to confirm it's been captured",
+									"console.log(\"Token: \", response.token);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ahmed7egazy.2003@gmail.com\",\n    \"password\": \"00000000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/login"
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"ahmed7egazy.2003@gmail.com\",\n    \"password\": \"00000000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/login"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:36:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"login successfully\",\n    \"user\": {\n        \"id\": 1,\n        \"name\": \"Ahmed Mohmaed Hegazy\",\n        \"email\": \"ahmed7egazy.2003@gmail.com\"\n    },\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiYjQ3NmNkMjZlNmU4YTRkYzc3YjUxMDY2OTk5ZjZmYzFjNzYxZjhmZWUwOWRkY2JmY2RjM2YzZjcyZDU5NDQ1ZjY5N2FmYzdmYmExMmI5NTYiLCJpYXQiOjE3MzE4ODI5NzAuNTAxOTE1LCJuYmYiOjE3MzE4ODI5NzAuNTAxOTIsImV4cCI6MTc0NzUxNzc3MC40OTI3MDIsInN1YiI6IjEiLCJzY29wZXMiOltdfQ.WJYfN4WPGRK6EMeHmGW9J2okqScnU612dp3R4njSH5zXMm7BsB1rEPhZFrHDFuYoBu2qwX8I40Udc9DqX3dUdV84QILtwQDhvxHpEBbhPv7uxMnnZgOF5W7ROryNXTT-kaprg5DKoeQlhkjhVDmYWsAKUd3fOWRakfoYDB72QJt8nNcqwc7OF1viukJF90Uu1JxK_HHqWK7luJ08Ng284kziiqjJtPh82R_1dj5StdGjiyoF-tO3b27p9lk615XsOOlRf1YWGb_8pQuvURzft_5cZi-mLjuBYAph2BOkByxI1SFPzyHvk8tJouydVf1Jh54ca209wlSg4pRfyUnoolZMCg6d_hg7YSFdhpgV7x1t3ZYlLwq0aWLkr-G2GnNkZxVy7eaivH11aUqk9daKDVWOGRnjKYx7OS5apqST9V1ylqfK9mmSwVQQiTkWssGpgZt_6YA0bPm-eoujZqFdGnY1ug6DiZrZfk7EBfENZnz_O5nhEUkWUCZiKMiDfsjw5ejXSVgHxLCwv5EkIfPw5ABJIoPdArHRN3FJsgUYm4762QsOZ6YQPyKVr6uDOjnuRihPb-2tPgzVM_VjubEf-_svQ5vmqLx4VkMcf02QhfKLNNjBz9CyhzMNpLfXr_HG1m0HiqU6efOV57x0zYAPIyHIn3XlNODzLIHg2sHCJmw\"\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/logout"
+					},
+					"response": [
+						{
+							"name": "logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/logout"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:19:55 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"User logged out successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "fetch all the project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{ _.baseUrl }}/projects"
+					},
+					"response": [
+						{
+							"name": "fetch all the project",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{ _.baseUrl }}/projects"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:19:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"retrieved projects successfully\",\n    \"projects\": [\n        {\n            \"id\": 1,\n            \"name\": \"project management api\",\n            \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n            \"status\": \"in_progress\",\n            \"start_date\": \"2024-11-16T22:00:00.000000Z\",\n            \"due_date\": \"2024-11-22T22:00:00.000000Z\",\n            \"created_at\": \"2024-11-17T16:37:24.000000Z\",\n            \"updated_at\": \"2024-11-17T16:37:24.000000Z\"\n        },\n        {\n            \"id\": 4,\n            \"name\": \"project management api\",\n            \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n            \"status\": \"in_progress\",\n            \"start_date\": \"2024-11-16T22:00:00.000000Z\",\n            \"due_date\": \"2024-11-22T22:00:00.000000Z\",\n            \"created_at\": \"2024-11-17T22:19:40.000000Z\",\n            \"updated_at\": \"2024-11-17T22:19:40.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "create new project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the project id value in a variable named 'project'",
+									"pm.environment.set(\"project\", response.project.id);",
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"project management api\",\n    \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n    \"status\": \"in_progress\",\n    \"start_date\": \"2024-11-17\",\n    \"due_date\": \"2024-11-23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/projects"
+					},
+					"response": [
+						{
+							"name": "create new project",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"project management api\",\n    \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n    \"status\": \"in_progress\",\n    \"start_date\": \"2024-11-17\",\n    \"due_date\": \"2024-11-23\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:19:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Project created successfully\",\n    \"project\": {\n        \"name\": \"project management api\",\n        \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n        \"status\": \"in_progress\",\n        \"start_date\": \"2024-11-16T22:00:00.000000Z\",\n        \"due_date\": \"2024-11-22T22:00:00.000000Z\",\n        \"updated_at\": \"2024-11-17T22:19:40.000000Z\",\n        \"created_at\": \"2024-11-17T22:19:40.000000Z\",\n        \"id\": 4\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "fetch single project",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"project management api\",\n    \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n    \"status\": \"in_progress\",\n    \"start_date\": \"2024-11-17\",\n    \"due_date\": \"2024-11-23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/projects/{{project}}"
+					},
+					"response": [
+						{
+							"name": "fetch single project",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"project management api\",\n    \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n    \"status\": \"in_progress\",\n    \"start_date\": \"2024-11-17\",\n    \"due_date\": \"2024-11-23\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:19:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Project retrieved successfully\",\n    \"project\": {\n        \"id\": 1,\n        \"name\": \"project management api\",\n        \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n        \"status\": \"in_progress\",\n        \"start_date\": \"2024-11-16T22:00:00.000000Z\",\n        \"due_date\": \"2024-11-22T22:00:00.000000Z\",\n        \"created_at\": \"2024-11-17T16:37:24.000000Z\",\n        \"updated_at\": \"2024-11-17T16:37:24.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"project management api\",\n    \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n    \"status\": \"in_progress\",\n    \"start_date\": \"2024-11-17\",\n    \"due_date\": \"2024-11-23\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/projects/{{project}}"
+					},
+					"response": [
+						{
+							"name": "update project",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"project management api\",\n    \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n    \"status\": \"in_progress\",\n    \"start_date\": \"2024-11-17\",\n    \"due_date\": \"2024-11-23\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:18:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Project updated successfully.\",\n    \"project\": {\n        \"id\": 1,\n        \"name\": \"project management api\",\n        \"description\": \"Welcome to the Project Management API! This is a backend API built with Laravel to help manage projects, tasks, and teams. It provides the necessary endpoints for managing projects, assigning tasks to team members, and tracking progress in a structured and scalable way.\",\n        \"status\": \"in_progress\",\n        \"start_date\": \"2024-11-16T22:00:00.000000Z\",\n        \"due_date\": \"2024-11-22T22:00:00.000000Z\",\n        \"created_at\": \"2024-11-17T16:37:24.000000Z\",\n        \"updated_at\": \"2024-11-17T16:37:24.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/projects/{{project}}"
+					},
+					"response": [
+						{
+							"name": "delete project",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}"
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:17:32 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "fetch all the project tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+					},
+					"response": [
+						{
+							"name": "fetch all the project tasks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:17:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Tasks retrieved successfully\",\n    \"tasks\": [\n        {\n            \"id\": 1,\n            \"project_id\": 1,\n            \"created_by\": 1,\n            \"assigned_to\": 1,\n            \"title\": \"Create API Endpoints\",\n            \"details\": \"Develop all necessary API endpoints for the project.\",\n            \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n            \"status\": \"in_progress\",\n            \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n            \"updated_at\": \"2024-11-17T22:09:43.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "create a new task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the task id value in a variable named 'task'",
+									"pm.environment.set(\"task\", response.task.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"Create API Endpoints\",\n    \"details\": \"Develop all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+					},
+					"response": [
+						{
+							"name": "fetch all the project tasks Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_id\": 1,\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"Create API Endpoints\",\n    \"details\": \"Develop all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:09:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"project_id\": 1,\n        \"created_by\": 1,\n        \"assigned_to\": 1,\n        \"title\": \"Create API Endpoints\",\n        \"details\": \"Develop all necessary API endpoints for the project.\",\n        \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n        \"status\": \"in_progress\",\n        \"updated_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"id\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "fetch a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the task id value in a variable named 'task'",
+									"pm.environment.set(\"task\", response.task.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{ _.baseUrl }}/tasks/{{task}}"
+					},
+					"response": [
+						{
+							"name": "fetch all the project tasks Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_id\": 1,\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"Create API Endpoints\",\n    \"details\": \"Develop all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:09:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"project_id\": 1,\n        \"created_by\": 1,\n        \"assigned_to\": 1,\n        \"title\": \"Create API Endpoints\",\n        \"details\": \"Develop all necessary API endpoints for the project.\",\n        \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n        \"status\": \"in_progress\",\n        \"updated_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"id\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update a task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the task id value in a variable named 'task'",
+									"pm.environment.set(\"task\", response.task.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_id\": 1,\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"update API Endpoints\",\n    \"details\": \"update all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/tasks/{{task}}"
+					},
+					"response": [
+						{
+							"name": "fetch all the project tasks Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_id\": 1,\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"Create API Endpoints\",\n    \"details\": \"Develop all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:09:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"project_id\": 1,\n        \"created_by\": 1,\n        \"assigned_to\": 1,\n        \"title\": \"Create API Endpoints\",\n        \"details\": \"Develop all necessary API endpoints for the project.\",\n        \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n        \"status\": \"in_progress\",\n        \"updated_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"id\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "delete task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse the response JSON",
+									"let response = pm.response.json();",
+									"",
+									"// Store the task id value in a variable named 'task'",
+									"pm.environment.set(\"task\", response.task.id);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"project_id\": 1,\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"update API Endpoints\",\n    \"details\": \"update all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{ _.baseUrl }}/tasks/{{task}}"
+					},
+					"response": [
+						{
+							"name": "fetch all the project tasks Copy",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_id\": 1,\n    \"created_by\": 1,\n    \"assigned_to\": 1,\n    \"title\": \"Create API Endpoints\",\n    \"details\": \"Develop all necessary API endpoints for the project.\",\n    \"due_date\": \"2024-12-01\",\n    \"status\": \"in_progress\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{ _.baseUrl }}/projects/{{project}}/tasks"
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:09:43 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Task created successfully\",\n    \"task\": {\n        \"project_id\": 1,\n        \"created_by\": 1,\n        \"assigned_to\": 1,\n        \"title\": \"Create API Endpoints\",\n        \"details\": \"Develop all necessary API endpoints for the project.\",\n        \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n        \"status\": \"in_progress\",\n        \"updated_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n        \"id\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "fetch all tasks created by a user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{ _.baseUrl }}/{{user}}}/created-tasks"
+					},
+					"response": [
+						{
+							"name": "fetch all tasks created by a user",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{ _.baseUrl }}/{{user}}}/created-tasks"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:40:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Tasks retrieved successfully\",\n    \"tasks\": [\n        {\n            \"id\": 1,\n            \"project_id\": 1,\n            \"created_by\": 1,\n            \"assigned_to\": 1,\n            \"title\": \"update API Endpoints\",\n            \"details\": \"update all necessary API endpoints for the project.\",\n            \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n            \"status\": \"in_progress\",\n            \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n            \"updated_at\": \"2024-11-17T22:39:48.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"project_id\": 1,\n            \"created_by\": 1,\n            \"assigned_to\": 1,\n            \"title\": \"Create API Endpoints\",\n            \"details\": \"Develop all necessary API endpoints for the project.\",\n            \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n            \"status\": \"in_progress\",\n            \"created_at\": \"2024-11-17T22:21:33.000000Z\",\n            \"updated_at\": \"2024-11-17T22:21:33.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "fetch all tasks assigned to user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{token}}"
+							}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": "{{ _.baseUrl }}/{{user}}}/tasks"
+					},
+					"response": [
+						{
+							"name": "fetch all tasks created by a user Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{ _.baseUrl }}/{{user}}}/tasks"
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.6"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 22:40:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"Success\",\n    \"message\": \"Tasks retrieved successfully\",\n    \"tasks\": [\n        {\n            \"id\": 1,\n            \"project_id\": 1,\n            \"created_by\": 1,\n            \"assigned_to\": 1,\n            \"title\": \"update API Endpoints\",\n            \"details\": \"update all necessary API endpoints for the project.\",\n            \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n            \"status\": \"in_progress\",\n            \"created_at\": \"2024-11-17T22:09:43.000000Z\",\n            \"updated_at\": \"2024-11-17T22:39:48.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"project_id\": 1,\n            \"created_by\": 1,\n            \"assigned_to\": 1,\n            \"title\": \"Create API Endpoints\",\n            \"details\": \"Develop all necessary API endpoints for the project.\",\n            \"due_date\": \"2024-11-30T22:00:00.000000Z\",\n            \"status\": \"in_progress\",\n            \"created_at\": \"2024-11-17T22:21:33.000000Z\",\n            \"updated_at\": \"2024-11-17T22:21:33.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

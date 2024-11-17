@@ -28,7 +28,7 @@ class ProjectController extends Controller
             "status"=> "success",
             "message"=> "retrieved projects successfully",
             "projects"=> ProjectResource::collection($projects)
-        ],200);
+        ],Response::HTTP_OK);
     }
 
     /**

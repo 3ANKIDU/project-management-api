@@ -65,7 +65,7 @@ class AuthController extends Controller
     {
         $password = $request->password;
 
-        $user = User::where('email', $request->email)->select('id', 'email', 'password')->firstOrFail();
+        $user = User::where('email', $request->email)->firstOrFail();
 
         if ($user && Hash::check($password, $user->password)) {
             Log::info('', [$user]);

@@ -34,4 +34,12 @@ class Project extends Model
         'start_date' => 'date',
         'due_date' => 'date',
     ];
+
+    /**
+     * Get all the tasks related to the project
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

@@ -116,7 +116,7 @@ Once the API is up and running, you can interact with the endpoints using an API
 
 ## IMPORTANT NOTICE
 
-This project is **NOT open-source** and is **private**. It is intended for use only with explicit permission from the project owner (you). **Please do not use or distribute this code without first contacting the owner for confirmation**. If you would like to request access or permission to use this project, please reach out via [email/contact information] for approval.
+This project is **NOT open-source** and is **private**. It is intended for use only with explicit permission from the project owner. **Please do not use or distribute this code without first contacting the owner for confirmation**. If you would like to request access or permission to use this project, please reach out via [ahmed7egazy.2003@gmail.com] for approval.
 
 ---
 
@@ -140,7 +140,3 @@ This project is **NOT open-source**. Unauthorized usage or redistribution is str
 ---
 
 ### Thank you for checking out this project. Please remember to seek confirmation before using it.
-
----
-
-This version clearly indicates that the project is private, not open-source, and can only be used with your explicit permission. Adjust the contact information section if you want to add a way for others to reach out for permission.
