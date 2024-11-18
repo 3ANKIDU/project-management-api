@@ -21,9 +21,9 @@ class TaskController extends Controller
 
         if($tasks->isEmpty()){
             return response()->json([
-                "status"=> "Error",
-                "message"=> "The project has no tasks"
-            ], Response::HTTP_NOT_FOUND);
+                "status"=> "success",
+                "message"=> "No tasks found"
+            ], Response::HTTP_OK);
         }
 
         return response()->json([

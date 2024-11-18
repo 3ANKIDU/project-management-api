@@ -19,9 +19,9 @@ class ProjectController extends Controller
 
         if ($projects->isEmpty()) {
             return response()->json([
-                "status"=> "error",
-                "message"=> "could not find any projects"
-            ], Response::HTTP_NOT_FOUND);
+                "status"=> "Success",
+                "message"=> "No projects found"
+            ], Response::HTTP_OK);
         }
 
         return response()->json([
