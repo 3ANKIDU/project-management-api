@@ -14,7 +14,7 @@ Route::post('login', [AuthController::class, 'login']);
 
 Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
-
+    Route::post('users/{user}/role', [AuthController::class,'assignRole']);
     //projects routes
     Route::get('projects', [ProjectController::class,'index'])->middleware(['permission:view project']);
     Route::post('projects', [ProjectController::class,'store'])->middleware(['permission:create project']);
