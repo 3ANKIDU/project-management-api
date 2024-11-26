@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Laravel\Passport\Passport;
 use Laravel\Fortify\Fortify;
 
@@ -22,6 +24,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+        $this->registerPolicies();
+
+        // making super admin respond true to all permissions
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('super admin') ? true : null;
+        });
+
         //defining token expiration times
         Passport::tokensExpireIn(now()->addMinutes(30));
         Passport::refreshTokensExpireIn(now()->addDays(15));
