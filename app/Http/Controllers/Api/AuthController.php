@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Http\Requests\LoginRequest;
+use Spatie\Permission\Models\Role;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class AuthController extends Controller
 {
@@ -41,14 +45,14 @@ class AuthController extends Controller
                 'status' => 'success',
                 'user' => new UserResource($user),
                 'token' => $token,
-            ], 201);
+            ], Response::HTTP_CREATED);
         } catch (\InvalidArgumentException $e) {
             DB::rollBack();
 
             return response()->json([
                 'status' => 'error',
                 'message' => $e->getMessage(),
-            ], 422);
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -57,7 +61,7 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Failed to create user',
-            ], 500);
+            ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -76,7 +80,7 @@ class AuthController extends Controller
                 'message' => 'login successfully',
                 'user' => new UserResource($user),
                 'token' => $token,
-            ], 200);
+            ], Response::HTTP_OK);
         }
 
         return response()->json(['message' => 'Password is not correct!'], 401);
@@ -94,13 +98,44 @@ class AuthController extends Controller
             return response()->json([
                 'status' => 'success',
                 'message' => 'User logged out successfully',
-            ], 200);
+            ], Response::HTTP_OK);
         }
 
         return response()->json([
             'status' => 'failed',
             'message' => 'User not found.',
-        ], 404);
+        ], Response::HTTP_NOT_FOUND);
+    }
+
+    public function assignRole(User $user, Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'role' => 'required|string|exists:roles,name',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => $validator->errors()->first()
+            ], Response::HTTP_BAD_REQUEST);
+        }
+
+        $role = Role::findByName($request->role);
+
+        if (!$role) {
+            return response()->json([
+                'status'=> 'error',
+                'message' => 'Role not found'
+            ], Response::HTTP_NOT_FOUND);
+        }
+
+        $user->assignRole($request->role);
+
+        return response()->json([
+            'status'=> 'success',
+            'message'=> 'Role assigned successfully',
+            ], Response::HTTP_OK);
     }
 
 }
